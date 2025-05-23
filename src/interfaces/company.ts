@@ -5,4 +5,5 @@ export interface Company {
   website: string;
   small_logo_thumb_url: string;
   tags: string[];
+  one_liner: string;
 }

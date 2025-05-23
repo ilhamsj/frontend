@@ -10,9 +10,9 @@ const apiKey =
   process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY ||
   "";
 
-const meilisearchClient = new MeiliSearch({
+const meiliSearchClient = new MeiliSearch({
   host: hostUrl,
   apiKey: apiKey,
 });
 
-export default meilisearchClient;
+export default meiliSearchClient;

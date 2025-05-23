@@ -1,4 +1,4 @@
-import meilisearchClient from "@/lib/meilisearch/client";
+import meiliSearchClient from "@/lib/meilisearch/client";
 import { INDEX_YCOMBINATOR } from "@/constants/meilisearch";
 import { Company } from "@/interfaces/company";
 import camelcaseKeys from "camelcase-keys";
@@ -11,7 +11,7 @@ export const getCompanies = async (
     ...filter,
   };
 
-  const data = await meilisearchClient
+  const data = await meiliSearchClient
     .index<Company>(INDEX_YCOMBINATOR)
     .getDocuments({ ...params });
 
