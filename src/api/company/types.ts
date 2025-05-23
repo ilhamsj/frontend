@@ -1,7 +1,5 @@
 import { Company } from "@/interfaces/company";
-import { Pagination } from "meilisearch";
+import { Pagination, ResourceResults } from "meilisearch";
 
 export type GetCompaniesFilterRequest = Pagination;
-export type GetCompaniesFilterResponse = Pagination & {
-  results: Company[];
-};
+export type GetCompaniesFilterResponse = ResourceResults<Company[]>;

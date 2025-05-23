@@ -10,9 +10,9 @@ export const useCompanies = () => {
     initialPageParam: 0,
     queryFn: async ({ pageParam }) =>
       getCompanies({ offset: pageParam, limit: LIMIT }),
-    getNextPageParam: ({ offset = 0, limit = LIMIT }) => {
+    getNextPageParam: ({ offset = 0, total, limit = LIMIT }) => {
       const nextOffset = offset + limit;
-      return nextOffset < limit ? nextOffset : undefined;
+      return nextOffset < total ? nextOffset : undefined;
     },
   });
 };
