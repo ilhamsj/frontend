@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "bookface-images.s3.amazonaws.com",
       },
+      {
+        protocol: "http",
+        hostname: "local.wordpress.test",
+      },
     ],
   },
 };

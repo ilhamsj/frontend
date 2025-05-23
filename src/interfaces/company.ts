@@ -1,9 +1,9 @@
 export interface Company {
   name: string;
   slug: string;
-  long_description: string;
+  longDescription: string;
   website: string;
-  small_logo_thumb_url: string;
+  smallLogoThumbUrl: string;
   tags: string[];
-  one_liner: string;
+  oneLiner: string;
 }
