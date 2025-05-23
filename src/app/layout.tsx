@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/lib/utils";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import JotaiProvider from "@/providers/JotaiProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +30,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={cn(geistSans.variable, geistMono.variable, "antialiased")}
       >
-        {children}
+        <JotaiProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </JotaiProvider>
       </body>
     </html>
   );

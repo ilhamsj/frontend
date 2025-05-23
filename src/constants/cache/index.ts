@@ -1,0 +1,1 @@
+export const GET_COMPANIES_KEY = "GET_COMPANIES_KEY";
