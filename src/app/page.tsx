@@ -3,7 +3,7 @@ import CompaniesFilter from "@/components/companies/filter";
 
 const page = async () => {
   return (
-    <div className="w-10/12 mx-auto">
+    <div className="w-1/2 mx-auto">
       <div className="flex">
         <CompaniesFilter />
         <CompaniesIndex />;
