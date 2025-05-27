@@ -5,8 +5,8 @@ import { FilterCategory } from "@/components/companies/filter/category";
 const CompaniesFilter = () => {
   return (
     <div className="flex flex-col gap-4">
-      <FilterLocation />
       <FilterCategory />
+      <FilterLocation />
     </div>
   );
 };

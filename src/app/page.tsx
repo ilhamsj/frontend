@@ -6,7 +6,7 @@ const page = async () => {
     <div className="w-1/2 mx-auto">
       <div className="flex">
         <CompaniesFilter />
-        <CompaniesIndex />;
+        <CompaniesIndex />
       </div>
     </div>
   );

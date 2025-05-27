@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import JotaiProvider from "@/providers/JotaiProvider";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={cn(geistSans.variable, geistMono.variable, "antialiased")}
       >
         <JotaiProvider>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <ReactQueryProvider>
+            <NuqsAdapter>{children}</NuqsAdapter>
+          </ReactQueryProvider>
         </JotaiProvider>
       </body>
     </html>
