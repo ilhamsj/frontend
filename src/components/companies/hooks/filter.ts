@@ -1,9 +1,9 @@
 import { parseAsArrayOf, parseAsString, useQueryStates } from "nuqs";
 
 export const searchQueryParsers = {
-  keyword: parseAsString,
-  categories: parseAsArrayOf(parseAsString),
-  locations: parseAsArrayOf(parseAsString),
+  keyword: parseAsString.withDefault(""),
+  categories: parseAsArrayOf(parseAsString).withDefault([]),
+  locations: parseAsArrayOf(parseAsString).withDefault([]),
 };
 
 export const useSearchQuery = () => {

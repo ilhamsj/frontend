@@ -6,9 +6,11 @@ import { useInView } from "react-intersection-observer";
 import { InfiniteScrolling } from "@/components/common/infinite-scrolling";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useCompanies } from "@/components/companies/hooks";
+import { useSearchQuery } from "@/components/companies/hooks/filter";
 
 const CompaniesIndex = () => {
   const { ref, inView } = useInView();
+  const [searchQuery] = useSearchQuery();
 
   const {
     status,
@@ -18,7 +20,7 @@ const CompaniesIndex = () => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useCompanies();
+  } = useCompanies(searchQuery);
 
   React.useEffect(() => {
     if (inView) fetchNextPage();
@@ -32,7 +34,7 @@ const CompaniesIndex = () => {
       <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-1 xl:gap-x-8">
         {data.pages.map((page, index) => (
           <React.Fragment key={index}>
-            {page.results.map((item, index) => (
+            {page.hits.map((item, index) => (
               <CompanyCard key={index} company={item} />
             ))}
           </React.Fragment>
