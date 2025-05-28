@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useCompanies } from "@/components/companies/hooks";
 import { useSearchQuery } from "@/components/companies/hooks/filter";
 import { FACET } from "@/constants/meilisearch/facets";
+import { SortOption } from "@/api/company/types";
 
 const CompaniesIndex = () => {
   const { ref, inView } = useInView();
@@ -22,8 +23,8 @@ const CompaniesIndex = () => {
     fetchNextPage,
     hasNextPage,
   } = useCompanies({
+    sort: searchQuery.sort as SortOption,
     query: searchQuery.query as string,
-    sort: searchQuery.sort as string,
     [FACET.BATCH]: searchQuery[FACET.BATCH] as string[],
     [FACET.INDUSTRY]: searchQuery[FACET.INDUSTRY] as string[],
     [FACET.REGIONS]: searchQuery[FACET.REGIONS] as string[],

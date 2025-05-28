@@ -15,7 +15,12 @@ export type FacetFilter = {
   stage?: string[];
 };
 
-export type SortOption = "launched_at" | "name" | "";
+export type SortOption =
+  | "launched_at:desc"
+  | "launched_at:asc"
+  | "name:asc"
+  | "name:desc"
+  | "";
 
 export type SearchCompaniesRequest = {
   page?: number;

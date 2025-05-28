@@ -12,20 +12,6 @@ import { SearchParams, SearchResponse } from "meilisearch";
 import { FACETS_FILTER } from "@/constants/meilisearch/facets";
 import { isEmpty } from "lodash";
 
-export const getCompanies = async (
-  filter: GetCompaniesFilterRequest
-): Promise<GetCompaniesFilterResponse> => {
-  const params = {
-    ...filter,
-  };
-
-  const data = await meiliSearchClient
-    .index<Company>(INDEX_YCOMBINATOR)
-    .getDocuments({ ...params });
-
-  return camelcaseKeys(data, { deep: true });
-};
-
 /**
  * Builds filter string for Meilisearch from facet filters
  */
@@ -55,12 +41,26 @@ const buildFilterString = (facetFilters: FacetFilter): string => {
   return filters.join(" AND ");
 };
 
+export const getCompanies = async (
+  filter: GetCompaniesFilterRequest
+): Promise<GetCompaniesFilterResponse> => {
+  const params = {
+    ...filter,
+  };
+
+  const data = await meiliSearchClient
+    .index<Company>(INDEX_YCOMBINATOR)
+    .getDocuments({ ...params });
+
+  return camelcaseKeys(data, { deep: true });
+};
+
 export const searchCompanies = async (
   request: SearchCompaniesRequest
 ): Promise<SearchResponse<Company>> => {
   const query = request.query ?? "";
+  const sort = request.sort ? [request.sort] : [];
   const filter = buildFilterString(request);
-  const sort = request.sort ? [`${request.sort}:desc`] : [];
 
   const searchParams: SearchParams = {
     page: request.page,

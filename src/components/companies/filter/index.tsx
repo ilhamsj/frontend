@@ -7,13 +7,14 @@ import { get } from "lodash";
 import { FACET } from "@/constants/meilisearch/facets";
 import { FacetFilter } from "@/components/companies/filter/facet";
 import { CategoriesDistribution } from "meilisearch";
+import { SortOption } from "@/api/company/types";
 
 const CompaniesFilter = () => {
   const [searchQuery] = useSearchQuery();
 
   const { status, data, error } = useCompanies({
+    sort: searchQuery.sort as SortOption,
     query: searchQuery.query as string,
-    sort: searchQuery.sort as string,
     [FACET.BATCH]: searchQuery[FACET.BATCH] as string[],
     [FACET.INDUSTRY]: searchQuery[FACET.INDUSTRY] as string[],
     [FACET.REGIONS]: searchQuery[FACET.REGIONS] as string[],

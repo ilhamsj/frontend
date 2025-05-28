@@ -8,8 +8,10 @@ const CompaniesSort = () => {
 
   const sortOptions: { label: string; value: SortOption }[] = [
     { label: "Default", value: "" },
-    { label: "Launch Date", value: "launched_at" },
-    { label: "Alphabetical", value: "name" },
+    { label: "A - Z", value: "name:asc" },
+    { label: "Z - A", value: "name:desc" },
+    { label: "Oldest", value: "launched_at:asc" },
+    { label: "Newest", value: "launched_at:desc" },
   ];
 
   return (
