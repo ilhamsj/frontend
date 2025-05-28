@@ -6,8 +6,11 @@ import {
   GetCompaniesFilterRequest,
   GetCompaniesFilterResponse,
   SearchCompaniesRequest,
+  FacetFilter,
 } from "@/api/company/types";
 import { SearchParams, SearchResponse } from "meilisearch";
+import { FACETS_FILTER } from "@/constants/meilisearch/facets";
+import { isEmpty } from "lodash";
 
 export const getCompanies = async (
   filter: GetCompaniesFilterRequest
@@ -23,16 +26,34 @@ export const getCompanies = async (
   return camelcaseKeys(data, { deep: true });
 };
 
+/**
+ * Builds filter string for Meilisearch from facet filters
+ */
+const buildFilterString = (facetFilters: FacetFilter): string => {
+  const filters: string[] = [];
+
+  // Process batch filter
+  if (!isEmpty(facetFilters.batch)) {
+    filters.push(`batch = '${facetFilters.batch!.join("' OR batch = '")}' `);
+  }
+
+  // Process other filters (industry, regions, stage) when needed
+
+  return filters.join(" AND ");
+};
+
 export const searchCompanies = async (
   request: SearchCompaniesRequest
 ): Promise<SearchResponse<Company>> => {
   const query = request.query ?? "";
+  const filter = buildFilterString(request);
 
   const searchParams: SearchParams = {
     page: request.page,
     hitsPerPage: 12,
-    filter: ["tags = 'Marketplace' OR tags = 'SaaS'"],
+    filter,
     sort: ["launched_at:desc"],
+    facets: FACETS_FILTER,
   };
 
   const data = await meiliSearchClient

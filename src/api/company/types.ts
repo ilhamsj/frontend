@@ -8,7 +8,15 @@ export type GetCompaniesFilterRequest = Pagination & {
 export type GetCompaniesFilterResponse = ResourceResults<Company[]>;
 export type GetCompaniesHitsResponse = Hit<Company[]>;
 
-export type SearchCompaniesRequest = {
-  page: number;
-  query?: string;
+export type FacetFilter = {
+  batch?: string[];
+  industry?: string[];
+  regions?: string[];
+  stage?: string[];
 };
+
+export type SearchCompaniesRequest = {
+  page?: number;
+  hitsPerPage?: number;
+  query?: string;
+} & FacetFilter;
