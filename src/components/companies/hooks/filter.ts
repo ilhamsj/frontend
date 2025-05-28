@@ -11,7 +11,7 @@ export const searchQueryParsers = {
 
 export const useSearchQuery = () => {
   return useQueryStates(searchQueryParsers, {
-    clearOnDefault: false,
+    clearOnDefault: true,
     urlKeys: { keyword: "q" },
   });
 };

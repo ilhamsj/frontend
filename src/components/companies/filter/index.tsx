@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { useSearchQuery } from "../hooks/filter";
-import { useCompanies } from "../hooks";
+import { useSearchQuery } from "@/components/companies/hooks/filter";
+import { useCompanies } from "@/components/companies/hooks";
 import { get } from "lodash";
 import { FACET } from "@/constants/meilisearch/facets";
-import { FacetFilter } from "./facet";
+import { FacetFilter } from "@/components/companies/filter/facet";
 import { CategoriesDistribution } from "meilisearch";
 
 const CompaniesFilter = () => {
