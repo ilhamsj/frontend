@@ -22,6 +22,8 @@ const CompaniesIndex = () => {
     fetchNextPage,
     hasNextPage,
   } = useCompanies({
+    query: searchQuery.query as string,
+    sort: searchQuery.sort as string,
     [FACET.BATCH]: searchQuery[FACET.BATCH] as string[],
     [FACET.INDUSTRY]: searchQuery[FACET.INDUSTRY] as string[],
     [FACET.REGIONS]: searchQuery[FACET.REGIONS] as string[],
@@ -36,8 +38,8 @@ const CompaniesIndex = () => {
   if (status === "error") return <div>{error.message}</div>;
 
   return (
-    <div className="container mx-auto w-1/2">
-      <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-1 xl:gap-x-8">
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {data.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.hits.map((item, index) => (

@@ -12,6 +12,8 @@ const CompaniesFilter = () => {
   const [searchQuery] = useSearchQuery();
 
   const { status, data, error } = useCompanies({
+    query: searchQuery.query as string,
+    sort: searchQuery.sort as string,
     [FACET.BATCH]: searchQuery[FACET.BATCH] as string[],
     [FACET.INDUSTRY]: searchQuery[FACET.INDUSTRY] as string[],
     [FACET.REGIONS]: searchQuery[FACET.REGIONS] as string[],

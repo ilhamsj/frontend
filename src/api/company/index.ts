@@ -32,12 +32,25 @@ export const getCompanies = async (
 const buildFilterString = (facetFilters: FacetFilter): string => {
   const filters: string[] = [];
 
-  // Process batch filter
   if (!isEmpty(facetFilters.batch)) {
     filters.push(`batch = '${facetFilters.batch!.join("' OR batch = '")}' `);
   }
 
-  // Process other filters (industry, regions, stage) when needed
+  if (!isEmpty(facetFilters.industry)) {
+    filters.push(
+      `industry = '${facetFilters.industry!.join("' OR industry = '")}' `
+    );
+  }
+
+  if (!isEmpty(facetFilters.regions)) {
+    filters.push(
+      `regions = '${facetFilters.regions!.join("' OR regions = '")}' `
+    );
+  }
+
+  if (!isEmpty(facetFilters.stage)) {
+    filters.push(`stage = '${facetFilters.stage!.join("' OR stage = '")}' `);
+  }
 
   return filters.join(" AND ");
 };
@@ -47,12 +60,13 @@ export const searchCompanies = async (
 ): Promise<SearchResponse<Company>> => {
   const query = request.query ?? "";
   const filter = buildFilterString(request);
+  const sort = request.sort ? [`${request.sort}:desc`] : [];
 
   const searchParams: SearchParams = {
     page: request.page,
     hitsPerPage: 12,
     filter,
-    sort: ["launched_at:desc"],
+    sort,
     facets: FACETS_FILTER,
   };
 
