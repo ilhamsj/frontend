@@ -50,25 +50,28 @@ const CompaniesFilter = () => {
 
   return (
     <div className="flex flex-col gap-4">
+      <FacetFilter items={stageDistribution} facetKey="STAGE" title="Stage" />
+
       <FacetFilter
         items={batchDistribution}
         facetKey="BATCH"
         title="Batch"
         maxItems={10}
       />
+
       <FacetFilter
         items={industryDistribution}
         facetKey="INDUSTRY"
         title="Industry"
         maxItems={10}
       />
+
       <FacetFilter
         items={regionsDistribution}
         facetKey="REGIONS"
         title="Regions"
         maxItems={10}
       />
-      <FacetFilter items={stageDistribution} facetKey="STAGE" title="Stage" />
     </div>
   );
 };

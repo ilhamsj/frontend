@@ -7,6 +7,7 @@ import { InfiniteScrolling } from "@/components/common/infinite-scrolling";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useCompanies } from "@/components/companies/hooks";
 import { useSearchQuery } from "@/components/companies/hooks/filter";
+import { FACET } from "@/constants/meilisearch/facets";
 
 const CompaniesIndex = () => {
   const { ref, inView } = useInView();
@@ -20,7 +21,12 @@ const CompaniesIndex = () => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useCompanies(searchQuery);
+  } = useCompanies({
+    [FACET.BATCH]: searchQuery[FACET.BATCH] as string[],
+    [FACET.INDUSTRY]: searchQuery[FACET.INDUSTRY] as string[],
+    [FACET.REGIONS]: searchQuery[FACET.REGIONS] as string[],
+    [FACET.STAGE]: searchQuery[FACET.STAGE] as string[],
+  });
 
   React.useEffect(() => {
     if (inView) fetchNextPage();
