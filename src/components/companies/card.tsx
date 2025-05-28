@@ -10,13 +10,17 @@ interface CompanyCardProps {
 const CompanyCard = ({ company }: CompanyCardProps) => {
   return (
     <div className="flex gap-4 items-start">
-      <Image
-        src={company.smallLogoThumbUrl}
-        alt={company.name}
-        width={100}
-        height={100}
-        className="self-stretch object-contain w-auto"
-      />
+      <div
+        style={{ width: "100px", height: "100px" }}
+        className="flex items-center justify-center flex-shrink-0"
+      >
+        <Image
+          src={company.smallLogoThumbUrl}
+          alt={company.name}
+          width={80}
+          height={80}
+        />
+      </div>
 
       <div className="flex flex-col gap-2">
         <Link href={company.website} target="_blank">
