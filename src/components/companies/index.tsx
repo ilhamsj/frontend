@@ -38,8 +38,15 @@ const CompaniesIndex = () => {
   if (status === "pending") return <div>Loading</div>;
   if (status === "error") return <div>{error.message}</div>;
 
+  const total = data.pages.reduce((count, page) => count + page.hits.length, 0);
+  const { totalHits = 0 } = data.pages[0];
+
   return (
     <div>
+      <div className="mb-4 text-sm text-gray-600">
+        Showing {total} of {totalHits}+ companies
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {data.pages.map((page, index) => (
           <React.Fragment key={index}>
