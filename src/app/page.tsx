@@ -1,5 +1,6 @@
 import CompaniesIndex from "@/components/companies";
 import CompaniesFilter from "@/components/companies/filter";
+import FilterActive from "@/components/companies/filter/active";
 import CompaniesSearch from "@/components/companies/search";
 import CompaniesSort from "@/components/companies/sort";
 
@@ -9,6 +10,7 @@ const page = async () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold">YC Companies</h1>
         <div className="flex gap-4 items-center">
+          <FilterActive />
           <CompaniesSearch />
           <CompaniesSort />
         </div>
