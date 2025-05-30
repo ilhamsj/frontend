@@ -28,4 +28,5 @@ export type FacetFilter = {
   industry?: string[];
   regions?: string[];
   stage?: string[];
+  slug?: string;
 };

@@ -23,7 +23,7 @@ const CompanyCard = ({ company }: CompanyCardProps) => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Link href={company.website} target="_blank">
+        <Link href={`/startup/${company.slug}`}>
           <h3 className="text-2xl font-bold">{company.name}</h3>
         </Link>
         <p className="text-sm text-gray-500">{company.oneLiner}</p>

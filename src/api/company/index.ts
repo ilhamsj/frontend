@@ -38,6 +38,10 @@ const buildFilterString = (facetFilters: FacetFilter): string => {
     filters.push(`stage = '${facetFilters.stage!.join("' OR stage = '")}' `);
   }
 
+  if (!isEmpty(facetFilters.slug)) {
+    filters.push(`slug = '${facetFilters.slug}' `);
+  }
+
   return filters.join(" AND ");
 };
 
@@ -74,5 +78,13 @@ export const searchCompanies = async (
     .index<Company>(INDEX_YCOMBINATOR)
     .search<Company, SearchParams>(query, searchParams);
 
+  return camelcaseKeys(data, { deep: true });
+};
+
+export const getCompany = async (id: string): Promise<Company> => {
+  const data = await meiliSearchClient
+    .index<Company>(INDEX_YCOMBINATOR)
+    .getDocument(id);
+  // @ts-expect-error - camelcaseKeys expects Record<string, unknown> but Company works fine
   return camelcaseKeys(data, { deep: true });
 };
