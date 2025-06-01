@@ -6,4 +6,10 @@ export interface Company {
   smallLogoThumbUrl: string;
   tags: string[];
   oneLiner: string;
+  status: string;
+  stage: string;
+  industry: string;
+  teamSize: string;
+  allLocations: string;
+  launchedAt: string;
 }

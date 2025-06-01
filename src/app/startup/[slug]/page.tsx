@@ -1,5 +1,5 @@
 import { searchCompanies } from "@/api/company";
-import CompanyCard from "@/components/companies/card";
+import CompanyDetail from "@/components/companies/detail";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -15,7 +15,7 @@ const page = async ({ params }: PageProps) => {
 
   return (
     <div className="container mx-auto py-6">
-      <CompanyCard company={companies.hits[0]} />
+      <CompanyDetail company={companies.hits[0]} />
     </div>
   );
 };
