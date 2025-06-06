@@ -1,14 +1,12 @@
-import { FeatureCollection } from "geojson";
 import React from "react";
-
-type MapProps = {
-  width: number;
-  height: number;
-  data: FeatureCollection;
-};
+import IndonesianMap from "./IndonesianMap";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <div>
+      <IndonesianMap />
+    </div>
+  );
 };
 
 export default page;
